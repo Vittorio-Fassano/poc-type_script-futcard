@@ -8,7 +8,6 @@ const router = Router();
 router.get("/health", (req: Request, res: Response) => {
     res.sendStatus(200)
 })
-
 router.post("/games", validatingSchema(gameSchema), postGame);
 router.get("/games", getGames);
 router.put("/games/:id", validatingSchema(gameSchema), updateGame);

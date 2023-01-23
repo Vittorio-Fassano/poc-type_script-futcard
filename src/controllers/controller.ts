@@ -4,9 +4,9 @@ import { erros } from "../errors/genericErros.js";
 import { Game } from "../types/types.js";
 
 export async function postGame(req: Request, res: Response) {
-  const card = req.body as Game;
+  const game = req.body as Game;
   try {
-    await services.postGame(card);
+    await services.postGame(game);
     res.sendStatus(201);
     return;
   } catch (err) {
@@ -17,8 +17,9 @@ export async function postGame(req: Request, res: Response) {
 }
 
 export async function getGames(req: Request, res: Response) {
+  const stadium = req.query as Game;
   try {
-    const games: Game[] = await services.getGames();
+    const games: Game[] = await services.getGames(stadium);
     res.status(200).send(games);
     return;
   } catch (err) {

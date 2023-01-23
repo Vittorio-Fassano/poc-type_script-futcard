@@ -7,13 +7,22 @@ export async function insertGame(
 ) {
   return connectionDB.query(
     `INSERT INTO games (teams, result, stadium) 
-    VALUES ($1, $2, $3);`, 
+    VALUES ($1, $2, $3);`,
     [teams, resultLowerCase, stadium]
   );
 }
 
-export async function getAllGames(){
-    return connectionDB.query(
+export async function getGameByStadium(
+  stadium: string
+) {
+  return connectionDB.query(
+    `SELECT * FROM games 
+    WHERE stadium LIKE $1;`,
+    [`${stadium}%`]); 
+}
+
+export async function getAllGames() {
+  return connectionDB.query(
     `SELECT * FROM games;`);
 }
 
@@ -31,16 +40,16 @@ export async function updateGameRepository(
   );
 }
 
-export async function getGameById(id:string){
+export async function getGameById(id: string) {
   return connectionDB.query(
     `SELECT * FROM games 
-    WHERE id = $1;`, 
+    WHERE id = $1;`,
     [id])
 }
 
-export async function deleteGameRepository(id: string){
+export async function deleteGameRepository(id: string) {
   return connectionDB.query(
     `DELETE FROM games 
-    WHERE id = $1;`, 
+    WHERE id = $1;`,
     [id])
 }
