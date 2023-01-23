@@ -11,3 +11,8 @@ export async function insertCard(
     [teams, result, stadium]
   );
 }
+
+export async function getAllCards(){
+    return connectionDB.query(
+    `SELECT * FROM games;`);
+}

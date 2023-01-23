@@ -15,3 +15,15 @@ export async function postCard(req: Request, res: Response) {
         return;
     }
 }
+
+export async function getCards(req: Request, res: Response) {
+    try {
+      const cards: Card[] = await services.getCards();
+      res.status(200).send(cards);
+      return;
+    } catch (err) {
+      console.error(err);
+      res.sendStatus(500);
+      return;
+    }
+  }

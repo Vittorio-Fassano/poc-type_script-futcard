@@ -1,6 +1,6 @@
 import { Card } from "../types/types.js";
 import { erros } from "../errors/genericErros.js";
-import { insertCard } from "../repositories/repository.js";
+import { insertCard, getAllCards } from "../repositories/repository.js";
 
 async function postCard(card: Card) {
     const { teams, result, stadium } = card;
@@ -12,8 +12,19 @@ async function postCard(card: Card) {
     }
 }
 
+async function getCards() {
+    try {
+      const { rows } = await getAllCards();
+      return rows;
+    } catch (error) {
+      console.error(error);
+      throw erros();
+    }
+  }
+
 const services = {
-    postCard
+    postCard, 
+    getCards,
 };
 
 export default services;

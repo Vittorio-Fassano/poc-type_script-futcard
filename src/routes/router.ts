@@ -1,5 +1,5 @@
 import { Request, Response, Router } from "express";
-import { postCard } from "../controllers/controller.js";
+import { postCard, getCards } from "../controllers/controller.js";
 // import { deleteCard, getCards, postCard, updateCard } from "../controllers/controller.js";
 import { validatingSchema } from "../middlewares/middleware.js";
 import cardSchema from "../schemas/schema.js";
@@ -11,7 +11,7 @@ router.get("/health", (req: Request, res: Response) => {
 })
 
 router.post("/cards", validatingSchema(cardSchema), postCard);
-// router.get("/cards", getCards);
+router.get("/cards", getCards);
 // router.put("/cards/:id", validatingSchema(cardSchema), updateCard);
 // router.delete("/cars/:id", deleteCard);
 
