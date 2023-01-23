@@ -16,3 +16,17 @@ export async function getAllGames(){
     return connectionDB.query(
     `SELECT * FROM games;`);
 }
+
+export async function updateGameRepository(
+  teams: string,
+  resultLowerCase: string,
+  stadium: string,
+  id: string
+) {
+  return connectionDB.query(
+    `UPDATE games 
+    SET teams = $1, result = $2, stadium = $3 
+    WHERE id = $4; `,
+    [teams, resultLowerCase, stadium, id]
+  );
+}
