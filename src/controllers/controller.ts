@@ -41,3 +41,19 @@ export async function updateGame(req: Request, res: Response) {
     return;
   }
 }
+
+export async function deleteGame(req: Request, res: Response) {
+  const { id } = req.params;
+  try {
+    const deleted = await services.deleteGame(id);
+    if (deleted === null) {
+      return res.sendStatus(404)
+    }
+    res.sendStatus(200);
+    return;
+  } catch (err) {
+    console.error(err);
+    res.sendStatus(500);
+    return;
+  }
+}

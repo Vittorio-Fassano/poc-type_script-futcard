@@ -30,3 +30,17 @@ export async function updateGameRepository(
     [teams, resultLowerCase, stadium, id]
   );
 }
+
+export async function getGameById(id:string){
+  return connectionDB.query(
+    `SELECT * FROM games 
+    WHERE id = $1;`, 
+    [id])
+}
+
+export async function deleteGameRepository(id: string){
+  return connectionDB.query(
+    `DELETE FROM games 
+    WHERE id = $1;`, 
+    [id])
+}

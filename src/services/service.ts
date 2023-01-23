@@ -1,6 +1,6 @@
 import { Game } from "../types/types.js";
 import { erros } from "../errors/genericErros.js";
-import { insertGame, getAllGames, updateGameRepository } from "../repositories/repository.js";
+import { insertGame, getAllGames, updateGameRepository, deleteGameRepository, getGameById } from "../repositories/repository.js";
 
 async function postGame(game: Game) {
   const { teams, result, stadium } = game;
@@ -34,10 +34,38 @@ async function updateGame(id: string, game: Game) {
   }
 }
 
+async function getGame(id: string) {
+  try {
+    const { rows } = await getGameById(id);
+    if (rows.length === 0) {
+      return null;
+    }
+    return rows[0];
+  } catch (err) {
+    console.error(err);
+    throw erros();
+  }
+}
+
+async function deleteGame(id: string) {
+  try {
+    const exists = await getGame(id);
+    if (exists === null) {
+      return null;
+    }
+    const result = (await deleteGameRepository(id)).rows;
+    return;
+  } catch (err) {
+    console.error(err);
+    throw erros();
+  }
+}
+
 const services = {
   postGame,
   getGames,
   updateGame,
+  deleteGame,
 };
 
 export default services;
