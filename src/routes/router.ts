@@ -1,8 +1,7 @@
 import { Request, Response, Router } from "express";
-import { postCard, getCards } from "../controllers/controller.js";
-// import { deleteCard, getCards, postCard, updateCard } from "../controllers/controller.js";
+import { postGame, getGames } from "../controllers/controller.js";
 import { validatingSchema } from "../middlewares/middleware.js";
-import cardSchema from "../schemas/schema.js";
+import gameSchema from "../schemas/schema.js";
 
 const router = Router();
 
@@ -10,9 +9,9 @@ router.get("/health", (req: Request, res: Response) => {
     res.sendStatus(200)
 })
 
-router.post("/cards", validatingSchema(cardSchema), postCard);
-router.get("/cards", getCards);
-// router.put("/cards/:id", validatingSchema(cardSchema), updateCard);
-// router.delete("/cars/:id", deleteCard);
+router.post("/games", validatingSchema(gameSchema), postGame);
+router.get("/games", getGames);
+// router.put("/games/:id", validatingSchema(gameSchema), updateGame);
+// router.delete("/games/:id", deleteGame);
 
 export default router;

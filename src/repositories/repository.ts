@@ -1,18 +1,18 @@
 import { connectionDB } from "../database/db.js";
 
-export async function insertCard(
+export async function insertGame(
   teams: string,
-  result: string,
+  resultLowerCase: string,
   stadium: string
 ) {
   return connectionDB.query(
     `INSERT INTO games (teams, result, stadium) 
     VALUES ($1, $2, $3);`, 
-    [teams, result, stadium]
+    [teams, resultLowerCase, stadium]
   );
 }
 
-export async function getAllCards(){
+export async function getAllGames(){
     return connectionDB.query(
     `SELECT * FROM games;`);
 }

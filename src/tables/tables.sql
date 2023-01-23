@@ -1,9 +1,9 @@
 CREATE DATABASE futcard;
 
 CREATE TYPE "result_types" AS ENUM (
-    'Vitória',
-    'Empate',
-    'Derrota'
+    'vitória',
+    'empate',
+    'derrota'
 );
 
 CREATE TABLE "games" (

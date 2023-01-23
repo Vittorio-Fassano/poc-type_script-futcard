@@ -1,4 +1,4 @@
-export type Card = {
+export type Game = {
     teams: string;
     result: string;
     stadium: string;

@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
 import services from "../services/service.js";
 import { erros } from "../errors/genericErros.js";
-import { Card } from "../types/types.js";
+import { Game } from "../types/types.js";
 
-export async function postCard(req: Request, res: Response) {
-    const card = req.body as Card;
+export async function postGame(req: Request, res: Response) {
+    const card = req.body as Game;
     try {
-        await services.postCard(card);
+        await services.postGame(card);
         res.sendStatus(201);
         return;
     } catch (err) {
@@ -16,10 +16,10 @@ export async function postCard(req: Request, res: Response) {
     }
 }
 
-export async function getCards(req: Request, res: Response) {
+export async function getGames(req: Request, res: Response) {
     try {
-      const cards: Card[] = await services.getCards();
-      res.status(200).send(cards);
+      const games: Game[] = await services.getGames();
+      res.status(200).send(games);
       return;
     } catch (err) {
       console.error(err);
